@@ -16,7 +16,7 @@
 void	receive(int signal, siginfo_t *info, void *context)
 {
 	static int	i = 0;
-	static char	c = 0;
+	static unsigned char	c = 0;
 
 	(void)info;
 	(void)context;
@@ -29,10 +29,13 @@ void	receive(int signal, siginfo_t *info, void *context)
 		i++;
 	if (i == 8)
 	{
-		ft_printf("%c", c);
+		write(1, &c, 1);
 		i = 0;
 		c = 0;
 	}
+	else if (!i && !c)
+		kill(info->si_pid, SIGUSR2);
+	kill(info->si_pid, SIGUSR1);
 }
 
 int	main(void)

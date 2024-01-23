@@ -12,6 +12,19 @@
 
 #include "../include/minitalk.h"
 
+int	g_bit_handler;
+
+void	validation_server(int signal)
+{
+	if (signal == SIGUSR2)
+	{
+		ft_printf("Message sent and received.\n");
+		exit(EXIT_SUCCESS);
+	}
+	else if (signal == SIGUSR1)
+		g_bit_handler = 1;
+}
+
 void	send_bit(pid_t pid, unsigned char c)
 {
 	unsigned int	i;
@@ -19,11 +32,13 @@ void	send_bit(pid_t pid, unsigned char c)
 	i = 0;
 	while (i < 8)
 	{
+		g_bit_handler = 0;
 		if ((c >> i) & 1)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(50);
+		while (g_bit_handler != 1)
+			usleep(100);
 		i++;
 	}
 }
@@ -64,8 +79,11 @@ int	main(int ac, char **av)
 
 	pid = check_args(ac, av);
 	i = 0;
+	signal(SIGUSR1, validation_server);
+	signal(SIGUSR2, validation_server);
 	while (av[2][i])
 		send_bit(pid, av[2][i++]);
+	send_bit(pid, 0);
 	send_bit(pid, '\n');
 	exit(EXIT_SUCCESS);
 }
