@@ -15,7 +15,7 @@
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*arr;
-	
+
 	if (INT_MAX / nmemb > size)
 		return (NULL);
 	if (nmemb == 0 || size == 0)

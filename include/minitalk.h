@@ -13,10 +13,9 @@
 #ifndef MINITALK_H
 # define MINITALK_H
 
-# include <stdlib.h>
-# include <signal.h>
-# include <unistd.h>
 # include "../ft_libft/include/libft.h"
+# include <signal.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 #endif
-

@@ -1,16 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fsulvac <fsulvac@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/23 14:48:53 by fsulvac           #+#    #+#             */
+/*   Updated: 2024/01/23 14:48:55 by fsulvac          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LIBFT_H
 # define LIBFT_H
 
 # include <ctype.h>
+# include <limits.h>
+# include <stdarg.h>
 # include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# include <limits.h>
-# include <stdarg.h>
 
-//gnl
+// gnl
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
@@ -23,7 +35,7 @@ char	*get_next_line(int fd);
 int		gnl_strlen(char *s);
 char	*str_init(char *s);
 
-//libft
+// libft
 char	*ft_strdup(const char *src);
 char	*ft_strnstr(const char *big, const char *small, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
@@ -59,15 +71,15 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
-//printf
-int	print_char(int c);
-int	print_str(char *str);
-int	print_hex_lowercase(unsigned int nbr);
-int	print_hex_uppercase(unsigned int n);
-int	print_nbr(int nb);
-int	print_percent(void);
-int	print_ptr(void *ptr);
-int	print_unsigned(unsigned int nbr);
-int	ft_printf(const char *format, ...);
+// printf
+int		print_char(int c);
+int		print_str(char *str);
+int		print_hex_lowercase(unsigned int nbr);
+int		print_hex_uppercase(unsigned int n);
+int		print_nbr(int nb);
+int		print_percent(void);
+int		print_ptr(void *ptr);
+int		print_unsigned(unsigned int nbr);
+int		ft_printf(const char *format, ...);
 
 #endif
